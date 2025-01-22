@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 function UserSchedule() {
   const [userSchedule, setUserSchedule] = useState([]);
+  const [userName, setUserName] = useState('')
   const [userId, setUserId] = useState('');
   const [error, setError] = useState(null);
 
@@ -18,7 +19,8 @@ function UserSchedule() {
     })
     .then(data => {
       console.log(data)
-      setUserSchedule(data)
+      setUserName(data.user_name)
+      setUserSchedule(data.schedules)
     })
     .catch(error => setError("Failed to retrieve user schedule."))
   }
@@ -32,6 +34,7 @@ function UserSchedule() {
       <label htmlFor="userid">User ID:</label>
       <input type="text" id="userid" value={userId} onChange={(e) => setUserId(e.target.value)}></input>
       <button onClick={ () => getUserSchedule()}>Submit</button>
+      {userName && <h3>Schedule for {userName}</h3>}
       <ul>
       {userSchedule.map((show, index) => (
           <li key={index}>
