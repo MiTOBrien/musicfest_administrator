@@ -10,6 +10,12 @@ function App() {
     <div className="App">
       <Header />
       <h2>Festival Management System</h2>
+      <ul>
+      <li>List your full event show schedule</li>
+      <li>List individual attendee schedules</li>
+      <li>Delete shows from schedules</li>
+      <li><strong>More feautures coming soon!</strong></li>
+      </ul>
       <Routes>
         <Route path="/fullschedule" element={ <FullSchedule /> } />
         <Route path="/userschedule" element={<UserSchedule />} />
