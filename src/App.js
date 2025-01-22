@@ -1,23 +1,20 @@
-import logo from './logo.svg';
+import { Route, Routes } from 'react-router-dom';
+import Header from './Header/Header';
+import FullSchedule from './FullSchedule/FullSchedule';
+import UserSchedule from './UserSchedule/UserSchedule';
+import DeleteShow from './DeleteShow/DeleteShow';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <h2>Festival Management System</h2>
+      <Routes>
+        <Route path="/fullschedule" element={ <FullSchedule /> } />
+        <Route path="/userschedule" element={<UserSchedule />} />
+        <Route path="/deleteshow" element={<DeleteShow />} />
+      </Routes>
     </div>
   );
 }
