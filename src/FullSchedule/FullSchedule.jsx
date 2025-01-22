@@ -1,8 +1,9 @@
 import './FullSchedule.css';
+import musicicon from '../icons/musicnote.png';
 import { useState, useEffect } from 'react';
 
 function FullSchedule() {
-  const [schedule, setSchedule] = useState(null);
+  const [schedule, setSchedule] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -19,6 +20,7 @@ function FullSchedule() {
       return response.json()
     })
     .then(data => {
+      console.log(data)
       setSchedule(data)
     })
     .catch(error => setError("Failed to retrieve schedules."))
@@ -29,7 +31,13 @@ function FullSchedule() {
   return (
     <>
       <h2>Festival Schedule</h2>
-      <p>{schedule}</p>
+      <ul>
+      {schedule.map((show, index) => (
+          <li key={index}>
+            <img src={musicicon} alt='Music Notes' /><strong>{show.title}</strong> - {show.date}
+          </li>
+        ))}
+      </ul>
     </>
   )
 }
