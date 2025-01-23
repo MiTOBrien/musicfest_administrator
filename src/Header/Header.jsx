@@ -10,9 +10,9 @@ function Header() {
         <NavLink to="/" className="home">
           <img className="homebtn" src={ homebtn } alt="Back to home page" />
         </NavLink>
-        <NavLink to="/fullschedule">Full Schedule</NavLink>
-        <NavLink to="/userschedule">User Schedule</NavLink>
-        <NavLink to="/deleteshow">Delete Show</NavLink>
+        <NavLink to="/fullschedule" className="fullschedule">Full Schedule</NavLink>
+        <NavLink to="/userschedule" className="userschedule">User Schedule</NavLink>
+        <NavLink to="/deleteshow" className="deleteshow">Delete Show</NavLink>
       </nav>
       <h1>MusicFest Administrator</h1>
     </>
