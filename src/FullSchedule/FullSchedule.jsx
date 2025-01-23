@@ -43,7 +43,7 @@ function FullSchedule() {
           </li>
         ))}
       </ul>
-      <button onClick={sortSchedule}>Sort</button>
+      <button className='sort' onClick={sortSchedule}>Sort</button>
     </>
   )
 }
