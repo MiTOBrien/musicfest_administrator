@@ -28,6 +28,11 @@ function FullSchedule() {
   if (error){
     return <p>{error}</p>
   }
+
+  function sortSchedule() {
+    const reverseSechedule = [...schedule].reverse();
+    setSchedule(reverseSechedule);
+  }
   return (
     <>
       <h2>Festival Schedule</h2>
@@ -38,6 +43,7 @@ function FullSchedule() {
           </li>
         ))}
       </ul>
+      <button onClick={sortSchedule}>Sort</button>
     </>
   )
 }
