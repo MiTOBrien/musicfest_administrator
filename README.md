@@ -1,70 +1,119 @@
-# Getting Started with Create React App
+# MusicFest Administrator (Back End)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Preview
+![Front End Image](https://github.com/Mood-Boost/mood_boost_be/blob/main/images/New%20Recording%20-%201_17_2025%2C%204_08_07%20PM-high.gif)
 
-## Available Scripts
+MusicFest Administrator is a tool to help people running music festivals.  It allows you to get a full list/schedule of all performing acts, a schedule for a specific attendee, and to delete artists from specific schedule slots.
 
-In the project directory, you can run:
+This is the backend portion of the application that contains the database for user accounts, shows/acts performing, and schedules that are used inside the front end application.  The MusicFest Administrator Front End can be found [here](https://github.com/MiTOBrien/musicfest_administrator).
 
-### `npm start`
+### Deployed Site
+- Coming soon
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Getting Started
+Clone down the resposity to your location machine, cd into the direcotry and run: 
+- bundle install
+- rails db:{drop,create,migrate,seed} or rails db:reset
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+At this point you can run the backend and run the test suite or test backend functionality by launching the server from the command line:
+- rails s or rails server
 
-### `npm test`
+To see the app fully functioning you will also need to clone down the front end and run that as well.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technology Used
 
-### `npm run build`
+- Ruby v3.2
+- Rails v7.1
+- PostgreSQL
+- JSONAPI-Serializer*
+- rack-cors
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+*These are included as gems and installed when bundle install is run from the command prompt.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Database Creation/Initialization
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![Database Schema](https://github.com/Mood-Boost/mood_boost_be/blob/main/images/schema.png)
 
-### `npm run eject`
+From the command prompt run:
+- rails db:{drop,create,migrate,seed} or rails db:reset
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Sample Requests/Responses
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### GET /api/v1/users
+```json
+{
+  "data": [
+    {
+      "id": "19",
+      "type": "user",
+      "attributes": {
+        "username": "default",
+        "first_name": "Default",
+        "email": "default@gmail.com"
+      }
+    },
+    {
+      "id": "20",
+      "type": "user",
+      "attributes": {
+        "username": "apu_nahasapeemapetilon",
+        "first_name": "Apu",
+        "email": "apu.nahasapeemapetilon@example.com"
+      }
+    }
+  ]
+}
+```
+### GET api/v1/users/20/activities?summary=true
+```json
+{
+    "activity_summary": {
+        "View a Quote": 11,
+        "View Breathing Guide": 2,
+        "View a Joke": 1
+    }
+}
+```
+### POST api/v1/users/19/activities
+```json
+{
+    "user_activity": {
+        "id": 159,
+        "user_id": 19,
+        "activity_id": 4,
+        "created_at": "2025-01-18T00:05:36.364Z",
+        "updated_at": "2025-01-18T00:05:36.364Z"
+    }
+}
+```
+### POST /api/v1/users
+```json
+{
+    "data": {
+        "id": "31",
+        "type": "user",
+        "attributes": {
+            "username": "stormblessed",
+            "first_name": null,
+            "email": "default224@gmail.com"
+        }
+    }
+}
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Test Suite
+- RSpec
+- Factory Bot
+- Faker
+- Shoulda-Matchers
+- SimpleCov
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+To run the RSpec tests from the command prompt run: 
+- bundle exec rspec spec
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Contributors
+- Danielle Cardona [github](https://github.com/dcardona23) [LinkedIn](https://www.linkedin.com/in/danielle-cardona-se/)
+- Karl Fallenius [github](https://github.com/SmilodonP) [LinkedIn](https://www.linkedin.com/in/karlfallenius/)
+- Michael O'Brien [github](https://github.com/MiTOBrien) [LinkedIn](https://www.linkedin.com/in/michaelobrien67/)
+- Paul Knapp [github](https://github.com/Paul-Knapp) [LinkedIn](https://www.linkedin.com/in/paul-m-knapp/)
+- Terra Manning [github](https://github.com/TDManning) [LinkedIn](https://www.linkedin.com/in/terra-manning/)
